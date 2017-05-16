@@ -1,0 +1,20 @@
+<!-- Main navigation -->
+<header class="header" role="banner">
+    <div id="inner-header" class="wrap container cf">
+        <!-- hamburger icon -->
+        <responsive-nav></responsive-nav>
+
+        <!-- nav -->
+        <nav role="navigation" class="main-nav">
+            <ul class="menu cf">
+                <li ng-if="userIsLoggedIn"><a href="#/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="responsive-wrapper">
+    <ul class="cf responsive-nav option-set">
+        <li ng-if="userIsLoggedIn"><a href="#/logout">Logout</a></li>
+    </ul>
+</div>

@@ -25,6 +25,16 @@ var gulp            = require('gulp'),
     runSequence     = require('run-sequence');
 
 
+gulp.task('audio', function() {
+  return gulp.src('./audio/*')
+    .pipe(gulp.dest('./_build/audio'));
+});
+
+gulp.task('json', function() {
+  return gulp.src('./fakeChat.json')
+    .pipe(gulp.dest('./_build'));
+});
+
 // optimize images
 gulp.task('images', function() {
   return gulp.src('./images/**/*')
@@ -148,7 +158,7 @@ gulp.task('sass:build', function() {
     }))
     .pipe($.autoprefixer('last 3 version'))
     .pipe($.uncss({
-      html: ['./index.html', './views/**/*.html', './components/**/*.html'],
+      html: ['./index.html', './views/**/*.html', './app/**/*.html'],
       ignore: [
         '.index',
         '.slick',
@@ -205,7 +215,7 @@ gulp.task('templates', function() {
     ])
     .pipe($.minifyHtml())
     .pipe($.angularTemplatecache({
-      module: 'boilerplate'
+      module: 'chat'
     }))
     .pipe(gulp.dest('_build/js'));
 });
@@ -239,8 +249,8 @@ gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
       reload(file.path);
     }
   });
-  gulp.watch(['*.html', 'components/**/*.html', 'views/*.html'], ['bs-reload']);
-  gulp.watch(['app/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
+  gulp.watch(['*.html', 'app/**/*.html', 'views/*.html'], ['bs-reload']);
+  gulp.watch(['app/**/*.js', 'js/*.js'], ['bs-reload']);
   gulp.watch('styles/**/*.scss', ['sass', 'minify-css']);
 });
 
@@ -261,6 +271,8 @@ gulp.task('build', function(callback) {
   runSequence(
     'clean:build',
     'sass:build',
+    'audio',
+    'json',
     'images',
     'templates',
     'usemin',

@@ -1,0 +1,18 @@
+<div class="chat-container">
+    <h2 class="text-center">Chat</h2>
+    <div class="chat-wrapper">
+        <div class="msgs-box" schroll-bottom="msgsList">
+            <div class="msg-wrapper" ng-repeat="msg in msgsList track by $index">
+                <span class="user col-sm">{{msg.name}}</span>
+                <span class="time">{{msg.time | date: "HH:mm"}}</span>
+                <div class="msg">{{msg.text}}</div>
+            </div>
+        </div>
+        <form>
+            <div class="form-group">
+                <input class="form-control" ng-model="msg" placeholder="Enter message...">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="send()">Send</button>
+        </form>
+    </div>
+</div>
