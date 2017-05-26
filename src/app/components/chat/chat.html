@@ -1,0 +1,11 @@
+<div class="chat-container">
+    <h2 class="text-center">Chat</h2>
+    <div class="chat-wrapper">
+        <div class="msgs-box" schroll-bottom="msgsList">
+            <msg ng-repeat="msg in $ctrl.msgsList track by $index"
+                msg="msg">
+            </msg>
+        </div>
+        <chat-footer on-send="$ctrl.send(msg)"></chat-footer>
+    </div>
+</div>
