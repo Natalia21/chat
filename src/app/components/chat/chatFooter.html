@@ -1,0 +1,6 @@
+<form #msgForm="ngForm" (ngSubmit)="send(msgForm)">
+    <div class="form-group">
+        <input name="msg" class="form-control" [(ngModel)]="msg" placeholder="Enter message...">
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
